@@ -5,15 +5,34 @@ import java.util.LinkedList;
 /**
  * Created by Elizaveta on 20.03.2016.
  */
+
+/**Блокнот.
+ *
+ * Состоит из записей
+ * @see Note
+ *
+ */
 public class NotePad {
     private LinkedList<Note> notepad;
     public NotePad(){
         notepad=new LinkedList<Note>();
     }
+
+    /**Добавляет к блокноту запись.
+     *
+     * @param name
+     * @param text
+     */
     public void addNote(String name, String text){
         notepad.add(new Note(name,text));
     }
 
+    /** Удаляет запись с заданным именем
+     *
+     * @throws RuntimeException Если такого имени не встречается или оно встречается несколько раз
+     * @param name
+     * @return Возвращает удалённую запись
+     */
     public Note deleteNote(String name){
         Note deleted=null;
         int i=0;
@@ -28,6 +47,13 @@ public class NotePad {
         return deleted;
     }
 
+    /**Изменяет текст записи с заданным именем
+     *
+     * @throws RuntimeException Если такого имени не встречается или оно встречается несколько раз
+     * @param name
+     * @param text Новый текст который будет записан вместо старого
+     * @return Возвращает удалённую запись
+     */
     public Note editNote(String name, String text){
         Note edited=null;
         int i=0;
@@ -44,6 +70,7 @@ public class NotePad {
         }
     }
 
+    /**Выводит на в консоль список всех записей.*/
     public void printNotePad(){
         if(notepad.isEmpty()) {
             System.out.println("NotePad is empty");
