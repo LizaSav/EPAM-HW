@@ -14,4 +14,5 @@ public abstract class Stationery {
         return getName();
     }
 
+    public abstract int  getCost();
 }
