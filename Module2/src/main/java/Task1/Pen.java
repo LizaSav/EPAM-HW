@@ -18,6 +18,10 @@ public class Pen {
         this.fineness = fineness;
     }
 
+    public int getCost(){
+        return type.getCost();
+    }
+
     @Override
     public String toString(){
         return type.name()+ " Pen : Color= "+color.toString()+"  finenss= "+fineness+"mm";
