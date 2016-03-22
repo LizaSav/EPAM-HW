@@ -1,8 +1,12 @@
 package Task6;
 
+import Task7.BoatWithStandardEngine;
+
 /**
  * Created by Elizaveta on 22.03.2016.
  */
+
+@BoatWithStandardEngine
 public class NuclearBoat {
     private  Engine engine;
     private double weight;
