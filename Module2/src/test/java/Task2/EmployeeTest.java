@@ -2,7 +2,6 @@ package Task2;
 
 import Task1.PenType;
 import org.junit.Test;
-
 import java.awt.*;
 
 import static org.junit.Assert.assertEquals;
