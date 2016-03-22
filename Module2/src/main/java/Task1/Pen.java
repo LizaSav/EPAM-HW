@@ -1,12 +1,14 @@
 package Task1;
 
+import Task3.Stationery;
+
 import java.awt.*;
 
 /**
  * Created by Elizaveta on 20.03.2016.
  */
 
-public class Pen {
+public class Pen extends Stationery {
     private PenType type;
     private Color color;
     private double fineness;
@@ -24,7 +26,7 @@ public class Pen {
 
     @Override
     public String toString(){
-        return type.name()+ " Pen : Color= "+color.toString()+"  finenss= "+fineness+"mm";
+        return "Pen "+type.name()+" : Color= "+color.toString()+"  fineness= "+fineness+"mm";
     }
 
     @Override
@@ -43,6 +45,10 @@ public class Pen {
         if (type!=p.type) return false;
         if (color!=p.color) return false;
         return true; //тонкость можно не проверять так как hashCode совпал
+    }
+
+    public String getName(){
+        return "Pen";
     }
 
 
