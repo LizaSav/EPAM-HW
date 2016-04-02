@@ -17,10 +17,13 @@ public class CrazyLogger implements Closeable{ //Почему-то ругает�
     private Writer out;
     private SimpleDateFormat format;
 
+    public CrazyLogger(File file){
+        this(file, 1);
+    }
     public CrazyLogger(File file, int capacity){
         assert (capacity>0);
         this.file=file;
-        log= new StringBuffer();
+        log= new StringBuffer(capacity);
         this.capacity=capacity;
         i=0;
         try {
@@ -56,6 +59,39 @@ public class CrazyLogger implements Closeable{ //Почему-то ругает�
         else i++;
     }
 
+    public OutputStreamWriter getByDate(OutputStreamWriter out, Date date) throws IOException {
+        BufferedReader in = new BufferedReader(new FileReader(file));
+        StringBuffer buf = new StringBuffer();
+        String s;
+        SimpleDateFormat format= new SimpleDateFormat("dd-MM- yyyy :");
+        while ((s=in.readLine())!=null){
+            int index =s.indexOf(format.format(date));
+            if(index==0){
+                buf.append(s+"\n");
+            }
+        }
+        in.close();
+        out.write(buf.toString());
+        out.flush();
+        return out;
+    }
+
+    public OutputStreamWriter getByLevel(OutputStreamWriter out, String level) throws IOException {
+        BufferedReader in = new BufferedReader(new FileReader(file));
+        StringBuffer buf = new StringBuffer();
+        String s;
+        while ((s=in.readLine())!=null){
+            int index =s.indexOf(level.toUpperCase());
+            if(index==21){
+                buf.append(s+"\n");
+            }
+        }
+        in.close();
+        out.write(buf.toString());
+        out.flush();
+        return out;
+    }
+
     private  void push(){
         try {
             out.write(log.toString());
@@ -67,6 +103,7 @@ public class CrazyLogger implements Closeable{ //Почему-то ругает�
 
     public void close() throws IOException {
         push();
+        log.setLength(0);
         out.close();
     }
 }
