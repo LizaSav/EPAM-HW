@@ -15,8 +15,8 @@ public class CrazyLoggerTest {
     public void loggerTest() throws IOException {
         File file=new File("src/main/resources/log.txt");
         CrazyLogger log=new CrazyLogger(file, 2);
-        log.logger("lall");
-        log.logger("bubub");
+        log.error("lall");
+        log.info("bubub");
         log.close();
     }
 

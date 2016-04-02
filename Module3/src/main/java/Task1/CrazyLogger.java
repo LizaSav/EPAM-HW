@@ -32,10 +32,23 @@ public class CrazyLogger implements Closeable{ //Почему-то ругает�
         }
         format=new SimpleDateFormat("dd-MM- yyyy : hh-mm");
     }
-    public  void logger(String message){
+
+    public void fatal(String message){
+        logger("FATAL", message);
+    }
+    public void error(String message){
+        logger("ERROR", message);
+    }
+    public void warning(String message){
+        logger("WARNING", message);
+    }
+    public void info(String message){
+        logger("INFO", message);
+    }
+        private void logger( String level, String message){
 
         Date date= new Date();
-        log.append(format.format(date)+" - "+message+"\n");
+        log.append(format.format(date)+ " ["+level+"] - "+message+"\n");
         if (i==capacity-1){
             i=0;
             push();
