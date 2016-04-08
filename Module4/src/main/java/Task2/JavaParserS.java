@@ -1,15 +1,14 @@
-package Task1;
+package Task2;
 
+
+import Task1.KeywordCounter;
 import java.io.*;
-import java.nio.charset.Charset;
 import java.util.HashMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
- * Created by Elizaveta on 07.04.2016.
+ * Created by Elizaveta on 08.04.2016.
  */
-public class JavaParser {
+public class JavaParserS {
     private static int comments=0; // при встрече /*  или */ увеличивается или уменьшается
     private static int quotes=0; // при встрече " увеличивается если они в начале слова или уменьшается если в конце
     private static final String[] keywords = {"abstract", "continue", "for", "new", "switch",
@@ -23,15 +22,12 @@ public class JavaParser {
             "class", "finally", "long", "strictfp", "volatile",
             "const", "float", "native", "super", "while"};
     public static void parse(File fin, File fout) throws IOException {
-        HashMap <String, KeywordCounter> words = new HashMap<>();
-        FileInputStream in =new FileInputStream(fin);
-        byte[] bytes=new byte[in.available()];
-        in.read(bytes); //плохо читать всё сразу
-        in.close();
-        String[] strings=(new String(bytes, Charset.forName("UTF-8" ))).split("\n");
-        for(int i=0; i<strings.length; i++){
+        HashMap<String, KeywordCounter> words = new HashMap<>();
+        BufferedReader in =new BufferedReader(new FileReader(fin));
+        while (in.ready()){
+            String string=in.readLine();
             // сначала отделим //, /*, */,  пробелами от слов, а затем разобьём строку по пробельным символам = , ( ) ;
-            String[] word =strings[i].replaceAll("\\/\\/"," // ").replaceAll("\\/\\*"," /* ").
+            String[] word =string.replaceAll("\\/\\/"," // ").replaceAll("\\/\\*"," /* ").
                     replaceAll("\\*\\/"," */ ").split("[\\s|\\(|=|,|\\)|;]");
             if(word.length>0) {
                 for (int j = 0; j < word.length; j++) {
@@ -42,24 +38,20 @@ public class JavaParser {
                                 commentsCounter(word[j]);
                             } else {
                                 if (word[j].length()>1) {
-                                    if ((word[j].charAt(word[j].length() - 1) == '"')&&(word[j].charAt(word[j].length() - 2)!='\\')) quotes--;
-                                }
-                                else  if (word[j].charAt(word[j].length() - 1) == '"') quotes--;
-                            }
+                                    if ((word[j].charAt(word[j].length() - 1) == '"')&&(word[j].charAt(word[j].length() - 2)!='\\')) quotes--;}
+                                else  if (word[j].charAt(word[j].length() - 1) == '"') quotes--;}
                         } else {
                             if (word[j].contains("/*")) {
                                 commentsCounter(word[j]);
                             } else {
                                 if (word[j].charAt(0) == '"') {
                                     quotes++;
-                                    if ((word[j].length()>1)&&(word[j].charAt(word[j].length() - 1)=='"')) quotes--;
-                                }
+                                    if ((word[j].length()>1)&&(word[j].charAt(word[j].length() - 1)=='"')) quotes--;}
                                 else {
                                     for (String keyword : keywords) {
                                         if (keyword.equals(word[j])) {
                                             if (words.containsKey(keyword)) words.get(keyword).incCount();
-                                            else words.put(keyword, new KeywordCounter());
-                                        }
+                                            else words.put(keyword, new KeywordCounter());}
                                     }
                                 }
                             }
@@ -67,18 +59,17 @@ public class JavaParser {
                     }
                 }
             }
+
         }
-        StringBuffer stringBuffer = new StringBuffer(words.size());
+        FileWriter out = new FileWriter(fout);
         for(String key:words.keySet()){
-            stringBuffer.append(key+" = "+words.get(key).getCount()+"\n");
+            out.write(key+" = "+words.get(key).getCount()+"\n");
         }
-        FileOutputStream out = new FileOutputStream(fout);
-        bytes=stringBuffer.toString().getBytes();
-        out.write(bytes);
+
         out.close();
     }
     private static void commentsCounter(String s){
-       comments++;
-       if (s.contains("*/")) comments=0;
+        comments++;
+        if (s.contains("*/")) comments=0;
     }
 }
