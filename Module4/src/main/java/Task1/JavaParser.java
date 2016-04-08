@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 /**
  * Created by Elizaveta on 07.04.2016.
  */
-public class JavaParser {/*fff/* kkk*/
+public class JavaParser {
     private static int comments=0; // при встрече /*  или */ увеличивается или уменьшается
     private static int quotes=0; // при встрече " увеличивается если они в начале слова или уменьшается если в конце
     private static final String[] keywords = {"abstract", "continue", "for", "new", "switch",
