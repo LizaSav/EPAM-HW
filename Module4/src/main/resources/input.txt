@@ -1,0 +1,21 @@
+class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello  \" new \" World!");
+        System.out.println("Hello  \" new\" World!");
+        System.out.println("Hello  \"new\" World!");
+        System.out.println("Hello  \"new \" World!");
+        System.out.println("new");
+        System.out.println("");
+
+        for/*new*/(int i = 0; i < 5; i++) {// new
+            if (i == 2) break;//new
+
+        /*new*/
+        /*fff/* kkk*/
+        }
+
+    }
+    private class PClass{
+        private double p;
+    }
+}

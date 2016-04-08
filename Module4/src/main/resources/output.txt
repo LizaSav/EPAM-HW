@@ -1,0 +1,10 @@
+private = 2
+static = 1
+void = 1
+public = 1
+break = 1
+double = 1
+for = 1
+class = 2
+if = 1
+int = 1
