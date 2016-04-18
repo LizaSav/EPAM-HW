@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+        targetNamespace="http://www.module9.org/HomeLibrary"
+        xmlns:tns="http://www.module9.org/HomeLibrary"
+        xmlns="http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="qualified">
+    <element name="mylibrary">
+        <complexType>
+            <sequence>
+                <element name="book"  type="tns:BookType"  maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="BookType">
+        <sequence>
+            <element name="title" type="string"/>
+            <element name="author" type="tns:PersonType"/>
+            <element name="year" type="tns:YearType" />
+            <element name="format" type="tns:FormatType"/>
+        </sequence>
+        <attribute name="id" type="int" use="required"/>
+    </complexType>
+
+    <complexType name="PersonType">
+           <sequence>
+               <element name="firstname" type="string"/>
+               <element name="lastname" type="string"/>
+           </sequence>
+    </complexType>
+
+    <simpleType name="YearType">
+        <restriction base="integer">
+            <minInclusive value="1000"/>
+        </restriction>
+    </simpleType>
+    
+    <simpleType name="FormatType">
+               <restriction base="string">
+                   <enumeration value="S"/>
+                   <enumeration value="M"/>
+                   <enumeration value="L"/>
+               </restriction>
+    </simpleType>
+</schema>

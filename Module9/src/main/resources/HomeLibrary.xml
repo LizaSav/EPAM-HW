@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mylibrary xmlns="http://www.module9.org/HomeLibrary"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.module9.org/HomeLibrary HomeLibrary.xsd ">
+    <book id="1">
+        <title>Naively.Super</title>
+        <author>
+            <firstname>Erlend</firstname>
+            <lastname>Lu</lastname>
+        </author>
+        <year>2010</year>
+        <format>S</format>
+    </book>
+    <book id="2">
+        <title>The Great Gatsby</title>
+        <author>
+            <firstname>Francis Scott</firstname>
+            <lastname>Fitzgerald</lastname>
+        </author>
+        <year>2013</year>
+        <format>M</format>
+    </book>
+    <book id="3">
+        <title>The Castle</title>
+        <author>
+            <firstname>Franz</firstname>
+            <lastname>Kafka</lastname>
+        </author>
+        <year>2010</year>
+        <format>S</format>
+    </book>
+</mylibrary>
