@@ -50,7 +50,7 @@ public class ConnectToDBExample {
                 while (rs.next())
                     System.out.println(rs.getInt("id") + " " + rs.getString("first_name") + " " + rs.getString("last_name"));
             }
-
+            statement.executeUpdate("DROP TABLE ForRemoving");
 
         }
 
