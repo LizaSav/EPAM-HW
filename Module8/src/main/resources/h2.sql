@@ -12,7 +12,7 @@ CREATE TABLE Book (
   id       INT PRIMARY KEY AUTO_INCREMENT,
   title    VARCHAR(255) NOT NULL,
   author_ID INT          NOT NULL,
-  year     VARCHAR(4)   NOT NULL,
+  year     INT   NOT NULL,
   format   VARCHAR(1)   NOT NULL,
   FOREIGN KEY (author_ID) REFERENCES Author(id)
 );
